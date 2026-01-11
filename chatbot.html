@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Jerry AI Chatbot</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Shared site styles -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    /* Chatbot page layout */
+    body {
+      min-height: 100vh;
+      background: linear-gradient(180deg, var(--bg), var(--soft));
+    }
+
+    .chatbot-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+      height: calc(100vh - 80px);
+      display: flex;
+    }
+
+    .chatbot-shell {
+      flex: 1;
+      background: var(--card);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      display: flex;
+      position: relative;
+    }
+
+    /* Full-page Flowise chatbot */
+    flowise-fullchatbot {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* Mobile adjustments */
+    @media (max-width: 768px) {
+      .chatbot-wrapper {
+        padding: 1rem;
+        height: calc(100vh - 64px);
+      }
+
+      .chatbot-shell {
+        border-radius: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header (same as index) -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="index.html">Jerry AI</a>
+      <nav class="nav">
+        <a href="index.html#features">Features</a>
+        <a href="index.html#how">How it works</a>
+        <a href="chatbot.html">Chatbot</a>
+      </nav>
+      <div class="controls">
+        <button id="theme-toggle" class="btn icon-btn" aria-label="Toggle dark mode">🌙</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Chatbot -->
+  <main class="chatbot-wrapper">
+    <div class="chatbot-shell">
+      <flowise-fullchatbot></flowise-fullchatbot>
+    </div>
+  </main>
+
+  <!-- Flowise Embed -->
+  <script type="module">
+    import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js"
+
+    Chatbot.initFull({
+      chatflowid: "70008781-49df-4b8f-ac4c-986d7f7f0d89",
+      apiHost: "https://cloud.flowiseai.com",
+    })
+  </script>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
