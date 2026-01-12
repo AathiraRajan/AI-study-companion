@@ -9,7 +9,6 @@
   <link rel="stylesheet" href="styles.css" />
 
   <style>
-    /* Chatbot page layout */
     body {
       min-height: 100vh;
       background: linear-gradient(180deg, var(--bg), var(--soft));
@@ -33,29 +32,23 @@
       position: relative;
     }
 
-    /* Full-page Flowise chatbot */
     flowise-fullchatbot {
       width: 100%;
       height: 100%;
       display: block;
     }
 
-    /* Mobile adjustments */
     @media (max-width: 768px) {
       .chatbot-wrapper {
         padding: 1rem;
         height: calc(100vh - 64px);
-      }
-
-      .chatbot-shell {
-        border-radius: 14px;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Header (same as index) -->
+  <!-- Header -->
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="index.html">Jerry AI</a>
@@ -65,7 +58,7 @@
         <a href="chatbot.html">Chatbot</a>
       </nav>
       <div class="controls">
-        <button id="theme-toggle" class="btn icon-btn" aria-label="Toggle dark mode">🌙</button>
+        <button id="theme-toggle" class="btn icon-btn">🌙</button>
       </div>
     </div>
   </header>
@@ -77,14 +70,60 @@
     </div>
   </main>
 
-  <!-- Flowise Embed -->
+  <!-- ✅ Flowise Full Embed -->
   <script type="module">
-    import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js"
+    import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js";
 
     Chatbot.initFull({
       chatflowid: "70008781-49df-4b8f-ac4c-986d7f7f0d89",
       apiHost: "https://cloud.flowiseai.com",
-    })
+
+      theme: {
+        button: {
+          display: false
+        },
+
+        chatWindow: {
+          showTitle: true,
+          title: "Jerry AI",
+          welcomeMessage: "Hi 👋 I’m Jerry AI. Upload your notes or ask me anything about your studies!",
+          height: "100%",
+          width: "100%",
+          renderHTML: true,
+          backgroundColor: "#ffffff",
+
+          starterPrompts: [
+            "Summarise my lecture notes",
+            "Generate quiz questions",
+            "Help me plan my study schedule"
+          ],
+
+          botMessage: {
+            backgroundColor: "#f7f8ff",
+            textColor: "#303235",
+            showAvatar: true
+          },
+
+          userMessage: {
+            backgroundColor: "#7c3aed",
+            textColor: "#ffffff",
+            showAvatar: true
+          },
+
+          textInput: {
+            placeholder: "Ask Jerry anything about your notes…",
+            sendButtonColor: "#7c3aed",
+            autoFocus: true
+          },
+
+          footer: {
+            text: "Powered by",
+            company: "Flowise",
+            companyLink: "https://flowiseai.com"
+          }
+        }
+      }
+    });
   </script>
 
   <script src="script.js" defer></script>
